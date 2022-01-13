@@ -1,4 +1,3 @@
-# great-expectations==0.14.0
 import json
 import logging
 
@@ -16,18 +15,23 @@ from in_memory.helpers import (
 logger = logging.getLogger(__name__)
 
 # Constants
-DATASOURCE_NAME = "pandas_datasource"
+# AWS settings
+S3_BUCKET = "<YOUR_BUCKET_NAME>"
 ROOT_PREFIX = "great_expectations"
 EXPECTATIONS_STORE_PREFIX = f"{ROOT_PREFIX}/expectations"
 VALIDATIONS_STORE_PREFIX = f"{ROOT_PREFIX}/validations"
 CHECKPOINTS_STORE_PREFIX = f"{ROOT_PREFIX}/checkpoints"
 S3_SITE_STORE_PREFIX = f"{ROOT_PREFIX}/data_docs"
-S3_BUCKET = "kavak-data-temp-dev"
+
+# GE settings
+DATASOURCE_NAME = "pandas_datasource"
 CHECKPOINT_NAME = "my_pandas_checkpoint"
 EXPECTATION_SUITE_NAME = "example_pandas_expectations"
 RUN_ID = "airflow_run_id"
 DATA_ASSET_NAME = "pandas_example"
+# Using expectations config saved in S3
 # PATH_CONTEXT_FILE = f"s3://{S3_BUCKET}/{ROOT_PREFIX}/great_expectations.yml"
+# or expectations config saved in local file
 PATH_CONTEXT_FILE = "./in_memory/great_expectations.yml"
 
 config = json.dumps(load_yaml(filename=PATH_CONTEXT_FILE))
@@ -58,8 +62,8 @@ batch_request = get_batch_request(
 )
 
 # Create a new validator with an empty expectation suite
-# If you have an expectation suite already created, create_expectation_suite=False
-# overwrite_existing=False
+# If you have an expectation suite already created,
+# remove args create_expectation_suite and overwrite_existing
 logger.info("Validator init")
 validator = init_validator(
     context,
