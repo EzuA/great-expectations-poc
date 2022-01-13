@@ -42,8 +42,3 @@ repos:
         language: system
         files: \.py$
         types: [python]
-  - repo: https://github.com/aws-cloudformation/cfn-python-lint
-    rev: v0.54.2
-    hooks:
-      - id: cfn-python-lint
-        files: template.yaml
