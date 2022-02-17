@@ -37,9 +37,7 @@ PATH_CONTEXT_FILE = "./in_memory/great_expectations.yml"
 
 logger.info("Spark init")
 # # Set up a basic spark session
-spark = SparkSession.builder.appName(
-    "default_great_expectations_spark_application"
-).getOrCreate()
+spark = SparkSession.builder.getOrCreate()
 
 config = json.dumps(load_yaml(filename=PATH_CONTEXT_FILE))
 config = jinja2.Template(config).render(
