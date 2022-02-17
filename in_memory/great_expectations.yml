@@ -25,6 +25,7 @@ datasources:
         class_name: RuntimeDataConnector
     execution_engine:
       module_name: great_expectations.execution_engine
+      force_reuse_spark_context: True
       class_name: SparkDFExecutionEngine
 
   pandas_datasource:
